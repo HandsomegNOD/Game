@@ -12,6 +12,17 @@ public class Tank {
     //定义移动速度
     private static final int SPEED = 10;
 
+    //移动状态
+    private boolean moving = false;
+
+    public boolean isMove() {
+        return moving;
+    }
+
+    public void setMove(boolean moving) {
+        this.moving = moving;
+    }
+
     public int getX() {
         return x;
     }
@@ -48,6 +59,18 @@ public class Tank {
         //定义一个方块，并移动
         g.fillRect(x, y, 50, 50);
 
+        move();
+
+    }
+
+    /**
+     * 移动
+     */
+    public void move() {
+        if (!moving) {
+            return;
+        }
+
         //根据方向进行移动
         switch (dir) {
             case LEFT:
@@ -63,5 +86,6 @@ public class Tank {
                 y += SPEED;
                 break;
         }
+
     }
 }
