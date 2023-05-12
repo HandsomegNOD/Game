@@ -10,5 +10,15 @@ public class Main {
 
         TankFrame tf = new TankFrame();
 
+        //窗口自动刷新
+        while (true) {
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            tf.repaint();
+        }
+
     }
 }
