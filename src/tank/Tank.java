@@ -2,18 +2,22 @@ package tank;
 
 import java.awt.*;
 
+/**
+ * 坦克类
+ */
+
 public class Tank {
 
     //定义初始位置
     private int x, y;
     //定义初始方向
     private Dir dir = Dir.UP;
-
     //定义移动速度
     private static final int SPEED = 10;
-
     //移动状态
     private boolean moving = false;
+
+    private TankFrame tf;
 
     public boolean isMove() {
         return moving;
@@ -48,16 +52,20 @@ public class Tank {
     }
 
     //构造器
-    public Tank(int x, int y, Dir dir) {
+    public Tank(int x, int y, Dir dir, TankFrame tf) {
         this.x = x;
         this.y = y;
         this.dir = dir;
+        this.tf = tf;
     }
 
 
     public void paint(Graphics g) {
         //定义一个方块，并移动
+        Color c = g.getColor();
+        g.setColor(Color.white);
         g.fillRect(x, y, 50, 50);
+        g.setColor(c);
 
         move();
 
@@ -87,5 +95,12 @@ public class Tank {
                 break;
         }
 
+    }
+
+    /**
+     * 发射子弹
+     */
+    public void fire() {
+        tf.bullets.add(new Bullet(x, y, dir,tf));
     }
 }
