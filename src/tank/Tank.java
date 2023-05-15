@@ -126,6 +126,7 @@ public class Tank {
     /**
      * 发射子弹
      */
+    //todo 根据不同的方向调整发射位置
     public void fire() {
         int bX = this.x + Tank.getWIDTH()/2 - Bullet.getWIDTH()/2;
         int bY = this.y + Tank.getHEIGHT()/2 - Bullet.getHEIGHT()/2;

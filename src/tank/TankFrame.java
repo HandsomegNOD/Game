@@ -15,6 +15,9 @@ public class TankFrame extends Frame {
     static final int GAME_WIDTH = 800, GAME_HEIGHT = 600;
     //子弹集合
     List<Bullet> bullets = new ArrayList<>();
+    //敌方集合
+    List<Tank> badTanks = new ArrayList<>();
+
     Tank tank = new Tank(200,200,Dir.UP,this);
 //    Bullet b = new Bullet(300, 300, Dir.UP);
 
@@ -81,6 +84,10 @@ public class TankFrame extends Frame {
 //                it.remove();
 //            }
 //        }
+
+        for (int i = 0; i < badTanks.size(); i++) {
+            badTanks.get(i).paint(g);
+        }
     }
 
     //键盘监听事件
