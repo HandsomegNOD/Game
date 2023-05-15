@@ -8,7 +8,7 @@ public class Main {
         TankFrame tf = new TankFrame();
 
         for (int i = 0; i < 5; i++) {
-            tf.badTanks.add(new Tank(50 + i * 80, 200, Dir.DOWN, tf));
+            tf.badTanks.add(new Tank(50 + i * 80, 200, Dir.DOWN, tf, Group.BAD));
         }
 
         //窗口自动刷新

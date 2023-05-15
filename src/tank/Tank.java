@@ -1,6 +1,7 @@
 package tank;
 
 import java.awt.*;
+import java.util.Random;
 
 /**
  * 坦克类
@@ -18,9 +19,13 @@ public class Tank {
     //定义移动速度
     private static final int SPEED = 10;
     //移动状态
-    private boolean moving = false;
+    private boolean moving = true;
     //存活状态
     private boolean living = true;
+    //分组
+    private Group group = Group.BAD;
+    //随机移动
+    private Random random;
 
     private TankFrame tf;
 
@@ -64,12 +69,21 @@ public class Tank {
         this.dir = dir;
     }
 
+    public Group getGroup() {
+        return group;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
+    }
+
     //构造器
-    public Tank(int x, int y, Dir dir, TankFrame tf) {
+    public Tank(int x, int y, Dir dir, TankFrame tf, Group group) {
         this.x = x;
         this.y = y;
         this.dir = dir;
         this.tf = tf;
+        this.group = group;
     }
 
 
@@ -137,7 +151,7 @@ public class Tank {
     public void fire() {
         int bX = this.x + Tank.getWIDTH()/2 - Bullet.getWIDTH()/2;
         int bY = this.y + Tank.getHEIGHT()/2 - Bullet.getHEIGHT()/2;
-        tf.bullets.add(new Bullet(bX, bY, dir,tf));
+        tf.bullets.add(new Bullet(bX, bY, dir,tf, this.group));
     }
 
     public void die() {

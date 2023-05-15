@@ -18,7 +18,7 @@ public class TankFrame extends Frame {
     //敌方集合
     List<Tank> badTanks = new ArrayList<>();
 
-    Tank tank = new Tank(200,200,Dir.UP,this);
+    Tank tank = new Tank(200,200,Dir.UP,this,Group.GOOD);
 //    Bullet b = new Bullet(300, 300, Dir.UP);
 
 
