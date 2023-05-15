@@ -19,6 +19,8 @@ public class Tank {
     private static final int SPEED = 10;
     //移动状态
     private boolean moving = false;
+    //存活状态
+    private boolean living = true;
 
     private TankFrame tf;
 
@@ -72,6 +74,11 @@ public class Tank {
 
 
     public void paint(Graphics g) {
+
+        //判断存活状态
+        if (!living) {
+            tf.badTanks.remove(this);
+        }
         //定义一个方块，并移动
         Color c = g.getColor();
         g.setColor(Color.white);
@@ -131,5 +138,9 @@ public class Tank {
         int bX = this.x + Tank.getWIDTH()/2 - Bullet.getWIDTH()/2;
         int bY = this.y + Tank.getHEIGHT()/2 - Bullet.getHEIGHT()/2;
         tf.bullets.add(new Bullet(bX, bY, dir,tf));
+    }
+
+    public void die() {
+        living = false;
     }
 }

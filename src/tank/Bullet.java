@@ -20,7 +20,7 @@ public class Bullet {
     //方向
     private Dir dir;
     //状态
-    private boolean live = true;
+    private boolean living = true;
 
     private TankFrame tf;
 
@@ -39,16 +39,16 @@ public class Bullet {
         return HEIGHT;
     }
 
-    public boolean isLive() {
-        return live;
+    public boolean isLiving() {
+        return living;
     }
 
-    public void setLive(boolean live) {
-        this.live = live;
+    public void setLiving(boolean living) {
+        this.living = living;
     }
 
     public void paint(Graphics g) {
-        if (!live) {
+        if (!living) {
             tf.bullets.remove(this);
         }
 
@@ -92,7 +92,20 @@ public class Bullet {
         }
 
         if (x < 0 || y < 0 || x > TankFrame.GAME_WIDTH || y > TankFrame.GAME_HEIGHT) {
-            live = false;
+            living = false;
+        }
+    }
+
+    public void die() {
+        living = false;
+    }
+
+    public void collideWith(Tank tank) {
+        Rectangle bulletRect = new Rectangle(this.x, this.y, WIDTH, HEIGHT);
+        Rectangle tankRect = new Rectangle(tank.getX(), tank.getY(), Tank.getWIDTH(), Tank.getHEIGHT());
+        if (bulletRect.intersects(tankRect)) {
+            tank.die();
+            this.die();
         }
     }
 }

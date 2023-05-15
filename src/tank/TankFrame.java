@@ -66,6 +66,7 @@ public class TankFrame extends Frame {
         Color c = g.getColor();
         g.setColor(Color.white);
         g.drawString("子弹的数量" + bullets.size(), 10, 60);
+        g.drawString("敌方坦克数量:" + badTanks.size(),10, 80);
         g.setColor(c);
         tank.paint(g);
 //        b.paint(g);
@@ -85,8 +86,18 @@ public class TankFrame extends Frame {
 //            }
 //        }
 
+        //画出敌方
         for (int i = 0; i < badTanks.size(); i++) {
             badTanks.get(i).paint(g);
+        }
+
+        //碰撞检测
+        for (int i = 0; i < bullets.size(); i++) {
+            for (int j = 0; j < badTanks.size(); j++) {
+                bullets.get(i).collideWith(badTanks.get(j));
+
+            }
+
         }
     }
 
