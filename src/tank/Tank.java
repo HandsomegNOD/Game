@@ -10,6 +10,9 @@ public class Tank {
 
     //定义初始位置
     private int x, y;
+    //宽度和高度
+    private static int WIDTH = ResourceMgr.tankU.getWidth();
+    private static int HEIGHT = ResourceMgr.tankU.getHeight();
     //定义初始方向
     private Dir dir = Dir.UP;
     //定义移动速度
@@ -41,6 +44,14 @@ public class Tank {
 
     public void setY(int y) {
         this.y = y;
+    }
+
+    public static int getWIDTH() {
+        return WIDTH;
+    }
+
+    public static int getHEIGHT() {
+        return HEIGHT;
     }
 
     public Dir getDir() {
@@ -116,6 +127,8 @@ public class Tank {
      * 发射子弹
      */
     public void fire() {
-        tf.bullets.add(new Bullet(x, y, dir,tf));
+        int bX = this.x + Tank.getWIDTH()/2 - Bullet.getWIDTH()/2;
+        int bY = this.y + Tank.getHEIGHT()/2 - Bullet.getHEIGHT()/2;
+        tf.bullets.add(new Bullet(bX, bY, dir,tf));
     }
 }

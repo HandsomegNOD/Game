@@ -12,7 +12,9 @@ public class Bullet {
     //速度
     private static final int SPEED = 1;
     //宽度和高度
-    private static int WIDTH = 1, HEIGHT = 1;
+    private static int WIDTH = ResourceMgr.bulletU.getWidth();
+    private static int HEIGHT = ResourceMgr.bulletU.getHeight();
+
     //位置
     private int x, y;
     //方向
@@ -27,6 +29,14 @@ public class Bullet {
         this.y = y;
         this.dir = dir;
         this.tf = tf;
+    }
+
+    public static int getWIDTH() {
+        return WIDTH;
+    }
+
+    public static int getHEIGHT() {
+        return HEIGHT;
     }
 
     public boolean isLive() {
