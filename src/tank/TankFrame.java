@@ -22,7 +22,7 @@ public class TankFrame extends Frame {
 
     Tank tank = new Tank(200,200,Dir.UP,this,Group.GOOD);
 
-    Explode explode = new Explode(100, 100, this);
+//    Explode explode = new Explode(100, 100, this);
 //    Bullet b = new Bullet(300, 300, Dir.UP);
 
 
@@ -109,7 +109,7 @@ public class TankFrame extends Frame {
 
         }
 
-        explode.paint(g);
+//        explode.paint(g);
     }
 
     //键盘监听事件

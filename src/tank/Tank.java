@@ -25,7 +25,7 @@ public class Tank {
     //分组
     private Group group = Group.BAD;
     //随机移动
-    private Random random;
+    private Random random = new Random();
 
     private TankFrame tf;
 
@@ -142,6 +142,14 @@ public class Tank {
                 break;
         }
 
+        //随机发射子弹
+        if (this.group == Group.BAD && random.nextInt(100) > 95 ) {
+            this.fire();
+        }
+        //敌方坦克随机移动
+        if (this.group == Group.BAD && random.nextInt(100) > 95 ) {
+            randomDir();
+        }
     }
 
     /**
@@ -156,5 +164,9 @@ public class Tank {
 
     public void die() {
         living = false;
+    }
+
+    public void randomDir() {
+        this.dir = Dir.values()[random.nextInt(4)];
     }
 }
