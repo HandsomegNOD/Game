@@ -150,6 +150,9 @@ public class Tank {
         if (this.group == Group.BAD && random.nextInt(100) > 95 ) {
             randomDir();
         }
+
+        boundsCheck();
+
     }
 
     /**
@@ -166,7 +169,25 @@ public class Tank {
         living = false;
     }
 
-    public void randomDir() {
+    private void randomDir() {
         this.dir = Dir.values()[random.nextInt(4)];
+    }
+
+    /**
+     * 边界检测
+     */
+    private void boundsCheck() {
+        if (this.x < 0) {
+            x = 0;
+        }
+        if (this.y < 30) {
+            y = 30;
+        }
+        if (this.x > TankFrame.GAME_WIDTH - this.WIDTH) {
+            this.x = TankFrame.GAME_WIDTH - this.WIDTH;
+        }
+        if (this.y > TankFrame.GAME_HEIGHT - this.HEIGHT) {
+            this.y = TankFrame.GAME_HEIGHT - this.HEIGHT;
+        }
     }
 }
