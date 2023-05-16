@@ -29,6 +29,9 @@ public class Tank {
 
     private TankFrame tf;
 
+    //定义碰撞检测所需矩形
+    Rectangle rec = new Rectangle();
+
     public boolean isMove() {
         return moving;
     }
@@ -77,6 +80,10 @@ public class Tank {
         this.group = group;
     }
 
+    public Rectangle getRec() {
+        return rec;
+    }
+
     //构造器
     public Tank(int x, int y, Dir dir, TankFrame tf, Group group) {
         this.x = x;
@@ -84,6 +91,11 @@ public class Tank {
         this.dir = dir;
         this.tf = tf;
         this.group = group;
+
+        rec.x = this.x;
+        rec.y = this.y;
+        rec.width = WIDTH;
+        rec.height = HEIGHT;
     }
 
 
@@ -151,8 +163,12 @@ public class Tank {
             randomDir();
         }
 
+        //边界检测
         boundsCheck();
 
+        //更新rec
+        rec.x = this.x;
+        rec.y = this.y;
     }
 
     /**
