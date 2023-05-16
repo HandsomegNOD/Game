@@ -17,6 +17,8 @@ public class TankFrame extends Frame {
     List<Bullet> bullets = new ArrayList<>();
     //敌方集合
     List<Tank> badTanks = new ArrayList<>();
+    //爆炸集合
+    List<Explode> explodes = new ArrayList<>();
 
     Tank tank = new Tank(200,200,Dir.UP,this,Group.GOOD);
 
@@ -91,6 +93,11 @@ public class TankFrame extends Frame {
         //画出敌方
         for (int i = 0; i < badTanks.size(); i++) {
             badTanks.get(i).paint(g);
+        }
+
+        //画出爆炸
+        for (int i = 0; i < explodes.size(); i++) {
+            explodes.get(i).paint(g);
         }
 
         //碰撞检测
