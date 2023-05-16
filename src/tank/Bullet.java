@@ -10,7 +10,7 @@ import java.awt.*;
 public class Bullet {
 
     //速度
-    private static final int SPEED = 1;
+    private static final int SPEED = 10;
     //宽度和高度
     private static int WIDTH = ResourceMgr.bulletU.getWidth();
     private static int HEIGHT = ResourceMgr.bulletU.getHeight();
@@ -71,8 +71,10 @@ public class Bullet {
         }
 
         //设置颜色
-        Color c = g.getColor();
-        g.setColor(Color.red);
+//        Color c = g.getColor();
+//        g.setColor(Color.red);
+//        g.fillRect(x, y, WIDTH, HEIGHT);
+//        g.setColor(c);
         switch (dir) {
             case LEFT:
                 g.drawImage(ResourceMgr.bulletL, x, y, null);
@@ -87,8 +89,6 @@ public class Bullet {
                 g.drawImage(ResourceMgr.bulletD, x, y, null);
                 break;
         }
-        g.fillRect(x, y, WIDTH, HEIGHT);
-        g.setColor(c);
 
         move();
     }
