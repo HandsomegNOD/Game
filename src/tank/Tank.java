@@ -12,8 +12,8 @@ public class Tank {
     //定义初始位置
     private int x, y;
     //宽度和高度
-    private static int WIDTH = ResourceMgr.tankU.getWidth();
-    private static int HEIGHT = ResourceMgr.tankU.getHeight();
+    private static int WIDTH = ResourceMgr.goodTankU.getWidth();
+    private static int HEIGHT = ResourceMgr.goodTankU.getHeight();
     //定义初始方向
     private Dir dir = Dir.UP;
     //定义移动速度
@@ -99,16 +99,16 @@ public class Tank {
 //        g.fillRect(x, y, 50, 50);
         switch (dir) {
             case LEFT:
-                g.drawImage(ResourceMgr.tankL, x, y, null);
+                g.drawImage(this.group == Group.GOOD ? ResourceMgr.goodTankL : ResourceMgr.badTankL, x, y, null);
                 break;
             case UP:
-                g.drawImage(ResourceMgr.tankU, x, y, null);
+                g.drawImage(this.group == Group.GOOD ? ResourceMgr.goodTankU : ResourceMgr.badTankU, x, y, null);
                 break;
             case RIGHT:
-                g.drawImage(ResourceMgr.tankR, x, y, null);
+                g.drawImage(this.group == Group.GOOD ? ResourceMgr.goodTankR : ResourceMgr.badTankR, x, y, null);
                 break;
             case DOWN:
-                g.drawImage(ResourceMgr.tankD, x, y, null);
+                g.drawImage(this.group == Group.GOOD ? ResourceMgr.goodTankD : ResourceMgr.badTankD, x, y, null);
                 break;
         }
 
