@@ -2,7 +2,7 @@ package test.design_patten.singleton;
 
 public class Mgr06 {
 
-    private static Mgr06 INSTANCE;
+    private static volatile Mgr06 INSTANCE;
 
     private Mgr06() {}
 
