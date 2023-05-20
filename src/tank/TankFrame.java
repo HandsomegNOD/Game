@@ -1,5 +1,7 @@
 package tank;
 
+import tank.fire.DefaultFire;
+
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -139,7 +141,8 @@ public class TankFrame extends Frame {
                     bD  = true;
                     break;
                 case KeyEvent.VK_CONTROL:
-                    tank.fire();
+                    tank.fire(DefaultFire.getInstance());
+//                    tank.fire();
                     break;
             }
 

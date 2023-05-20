@@ -1,5 +1,9 @@
 package tank;
 
+import tank.fire.ContinFire;
+import tank.fire.DefaultFire;
+import tank.fire.FireStrategy;
+
 import java.awt.*;
 import java.util.Random;
 
@@ -31,6 +35,8 @@ public class Tank {
 
     //定义碰撞检测所需矩形
     Rectangle rec = new Rectangle();
+
+    FireStrategy fs ;
 
     public boolean isMove() {
         return moving;
@@ -84,6 +90,14 @@ public class Tank {
         return rec;
     }
 
+    public TankFrame getTf() {
+        return tf;
+    }
+
+    public void setTf(TankFrame tf) {
+        this.tf = tf;
+    }
+
     //构造器
     public Tank(int x, int y, Dir dir, TankFrame tf, Group group) {
         this.x = x;
@@ -96,6 +110,30 @@ public class Tank {
         rec.y = this.y;
         rec.width = WIDTH;
         rec.height = HEIGHT;
+
+        if (this.group == Group.GOOD) {
+            String goodFSName = (String) PropertiesMgr.get("goodFS");
+            try {
+                fs = (FireStrategy) Class.forName(goodFSName).newInstance();
+            } catch (InstantiationException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        } else {
+            String goodFSName = (String) PropertiesMgr.get("badFS");
+            try {
+                fs = (FireStrategy) Class.forName(goodFSName).newInstance();
+            } catch (InstantiationException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 
@@ -156,7 +194,8 @@ public class Tank {
 
         //随机发射子弹
         if (this.group == Group.BAD && random.nextInt(100) > 95 ) {
-            this.fire();
+            this.fire(DefaultFire.getInstance());
+//            this.fire();
         }
         //敌方坦克随机移动
         if (this.group == Group.BAD && random.nextInt(100) > 95 ) {
@@ -172,13 +211,19 @@ public class Tank {
     }
 
     /**
-     * 发射子弹
+     * 发射子弹,将开火策略作为参数传入方法
      */
     //todo 根据不同的方向调整发射位置
+    public void fire(FireStrategy fs) {
+//        int bX = this.x + Tank.getWIDTH()/2 - Bullet.getWIDTH()/2;
+//        int bY = this.y + Tank.getHEIGHT()/2 - Bullet.getHEIGHT()/2;
+//        tf.bullets.add(new Bullet(bX, bY, dir,tf, this.group));
+        fs.fire(this);
+    }
+
+    //将开发策略作为成员变量传入方法
     public void fire() {
-        int bX = this.x + Tank.getWIDTH()/2 - Bullet.getWIDTH()/2;
-        int bY = this.y + Tank.getHEIGHT()/2 - Bullet.getHEIGHT()/2;
-        tf.bullets.add(new Bullet(bX, bY, dir,tf, this.group));
+        fs.fire(this);
     }
 
     public void die() {

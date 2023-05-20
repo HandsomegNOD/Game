@@ -10,7 +10,7 @@ import java.awt.*;
 public class Bullet {
 
     //速度
-    private static final int SPEED = 10;
+    private static final int SPEED = 100;
     //宽度和高度
     private static int WIDTH = ResourceMgr.bulletU.getWidth();
     private static int HEIGHT = ResourceMgr.bulletU.getHeight();
@@ -39,6 +39,9 @@ public class Bullet {
         rec.y = this.y;
         rec.width = WIDTH;
         rec.height = HEIGHT;
+
+        //new一个子弹就放到队列中去
+        tf.bullets.add(this);
     }
 
     public static int getWIDTH() {
