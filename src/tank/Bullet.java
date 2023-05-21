@@ -1,5 +1,7 @@
 package tank;
 
+import tank.abstractfacroty.BaseBullet;
+
 import java.awt.*;
 
 /**
@@ -7,7 +9,7 @@ import java.awt.*;
  * Date 2023/5/13 11:11
  * Desc  子弹类
  */
-public class Bullet {
+public class Bullet extends BaseBullet {
 
     //速度
     private static final int SPEED = 100;
@@ -68,6 +70,7 @@ public class Bullet {
         this.group = group;
     }
 
+    @Override
     public void paint(Graphics g) {
         if (!living) {
             tf.bullets.remove(this);
@@ -137,7 +140,8 @@ public class Bullet {
             this.die();
             int eX = tank.getX() + tank.getWIDTH() / 2 - Explode.getWIDTH() / 2;
             int eY = tank.getY() + tank.getHEIGHT() / 2 - Explode.getHEIGHT() / 2;
-            tf.explodes.add(new Explode(eX, eY, tf));
+//            tf.explodes.add(new Explode(eX, eY, tf));
+            tf.explodes.add(tf.gf.createExplode(eX,eY,tf));
         }
     }
 }

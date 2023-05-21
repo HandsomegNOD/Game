@@ -1,6 +1,6 @@
 package tank;
 
-import tank.fire.ContinFire;
+import tank.abstractfacroty.BaseTank;
 import tank.fire.DefaultFire;
 import tank.fire.FireStrategy;
 
@@ -11,7 +11,7 @@ import java.util.Random;
  * 坦克类
  */
 
-public class Tank {
+public class Tank extends BaseTank {
 
     //定义初始位置
     private int x, y;
@@ -137,6 +137,7 @@ public class Tank {
     }
 
 
+    @Override
     public void paint(Graphics g) {
 
         //判断存活状态

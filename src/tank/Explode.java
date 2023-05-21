@@ -1,8 +1,10 @@
 package tank;
 
+import tank.abstractfacroty.BaseExplode;
+
 import java.awt.*;
 
-public class Explode {
+public class Explode extends BaseExplode {
 
     private static int WIDTH = ResourceMgr.explodes[0].getWidth();
     private static int HEIGHT = ResourceMgr.explodes[0].getHeight();
@@ -27,6 +29,7 @@ public class Explode {
         return HEIGHT;
     }
 
+    @Override
     public void paint(Graphics g) {
         g.drawImage(ResourceMgr.explodes[step++], x, y, null);
 
