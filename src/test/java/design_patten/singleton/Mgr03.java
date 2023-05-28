@@ -1,0 +1,26 @@
+package design_patten.singleton;
+
+public class Mgr03 {
+
+    private static Mgr03 INSTANCE;
+
+    private Mgr03() {}
+
+    public static Mgr03 getInstance() {
+        if (INSTANCE == null) {
+            //测试线程不安全
+            try {
+                Thread.sleep(1);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            INSTANCE = new Mgr03();
+        }
+        return INSTANCE;
+    }
+
+    public void m() {
+        System.out.println("m");
+    }
+}

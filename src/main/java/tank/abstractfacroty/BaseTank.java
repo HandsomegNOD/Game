@@ -1,5 +1,7 @@
 package tank.abstractfacroty;
 
+import tank.Group;
+
 import java.awt.*;
 
 /**
@@ -10,4 +12,18 @@ import java.awt.*;
 public abstract class BaseTank {
 
     public abstract void paint(Graphics g);
+
+    public abstract Group getGroup();
+
+    public abstract Rectangle getRec();
+
+    public abstract void die();
+
+    public abstract int getX();
+
+    public abstract int getWIDTH();
+
+    public abstract int getY();
+
+    public abstract int getHEIGHT();
 }

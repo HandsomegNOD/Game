@@ -1,7 +1,6 @@
-package tank;
+package tank.abstractfacroty;
 
-import tank.abstractfacroty.BaseBullet;
-import tank.abstractfacroty.BaseTank;
+import tank.*;
 
 import java.awt.*;
 
@@ -10,7 +9,7 @@ import java.awt.*;
  * Date 2023/5/13 11:11
  * Desc  子弹类
  */
-public class Bullet extends BaseBullet {
+public class RectBullet extends BaseBullet {
 
     //速度
     private static final int SPEED = 100;
@@ -31,7 +30,7 @@ public class Bullet extends BaseBullet {
 
     Rectangle rec = new Rectangle();
 
-    public Bullet(int x, int y, Dir dir, TankFrame tf, Group group) {
+    public RectBullet(int x, int y, Dir dir, TankFrame tf, Group group) {
         this.x = x;
         this.y = y;
         this.dir = dir;
@@ -78,24 +77,24 @@ public class Bullet extends BaseBullet {
         }
 
         //设置颜色
-//        Color c = g.getColor();
-//        g.setColor(Color.red);
-//        g.fillRect(x, y, WIDTH, HEIGHT);
-//        g.setColor(c);
-        switch (dir) {
-            case LEFT:
-                g.drawImage(ResourceMgr.bulletL, x, y, null);
-                break;
-            case UP:
-                g.drawImage(ResourceMgr.bulletU, x, y, null);
-                break;
-            case RIGHT:
-                g.drawImage(ResourceMgr.bulletR, x, y, null);
-                break;
-            case DOWN:
-                g.drawImage(ResourceMgr.bulletD, x, y, null);
-                break;
-        }
+        Color c = g.getColor();
+        g.setColor(Color.red);
+        g.fillRect(x, y, 20, 20);
+        g.setColor(c);
+//        switch (dir) {
+//            case LEFT:
+//                g.drawImage(ResourceMgr.bulletL, x, y, null);
+//                break;
+//            case UP:
+//                g.drawImage(ResourceMgr.bulletU, x, y, null);
+//                break;
+//            case RIGHT:
+//                g.drawImage(ResourceMgr.bulletR, x, y, null);
+//                break;
+//            case DOWN:
+//                g.drawImage(ResourceMgr.bulletD, x, y, null);
+//                break;
+//        }
 
         move();
     }

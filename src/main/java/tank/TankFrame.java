@@ -1,9 +1,6 @@
 package tank;
 
-import tank.abstractfacroty.BaseBullet;
-import tank.abstractfacroty.BaseExplode;
-import tank.abstractfacroty.DefaultFactory;
-import tank.abstractfacroty.GameFactory;
+import tank.abstractfacroty.*;
 import tank.fire.DefaultFire;
 
 import java.awt.*;
@@ -19,15 +16,16 @@ import java.util.List;
 public class TankFrame extends Frame {
 
 
-    static final int GAME_WIDTH = 800, GAME_HEIGHT = 600;
+    public static final int GAME_WIDTH = 800, GAME_HEIGHT = 600;
     //子弹集合
 //    List<Bullet> bullets = new ArrayList<>();
-    List<BaseBullet> bullets = new ArrayList<>();
+    public List<BaseBullet> bullets = new ArrayList<>();
     //敌方集合
-    List<Tank> badTanks = new ArrayList<>();
+//    public List<Tank> badTanks = new ArrayList<>();
+    public List<BaseTank> badTanks = new ArrayList<>();
     //爆炸集合
 //    List<Explode> explodes = new ArrayList<>();
-    List<BaseExplode> explodes  = new ArrayList<>();
+    public List<BaseExplode> explodes  = new ArrayList<>();
 
 
     Tank tank = new Tank(200,200,Dir.UP,this,Group.GOOD);
@@ -35,7 +33,8 @@ public class TankFrame extends Frame {
 //    Explode explode = new Explode(100, 100, this);
 //    Bullet b = new Bullet(300, 300, Dir.UP);
 
-    GameFactory gf = new DefaultFactory();
+    public GameFactory gf = new DefaultFactory();
+//    public GameFactory gf = new RectFactory();
 
 
 

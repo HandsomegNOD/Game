@@ -1,7 +1,6 @@
-package tank;
+package tank.abstractfacroty;
 
-import tank.abstractfacroty.BaseTank;
-import tank.fire.DefaultFire;
+import tank.*;
 import tank.fire.FireStrategy;
 
 import java.awt.*;
@@ -11,7 +10,7 @@ import java.util.Random;
  * 坦克类
  */
 
-public class Tank extends BaseTank {
+public class RectTank extends BaseTank {
 
     //定义初始位置
     private int x, y;
@@ -62,7 +61,7 @@ public class Tank extends BaseTank {
         this.y = y;
     }
 
-    public int getWIDTH() {
+    public  int getWIDTH() {
         return WIDTH;
     }
 
@@ -99,7 +98,7 @@ public class Tank extends BaseTank {
     }
 
     //构造器
-    public Tank(int x, int y, Dir dir, TankFrame tf, Group group) {
+    public RectTank(int x, int y, Dir dir, TankFrame tf, Group group) {
         this.x = x;
         this.y = y;
         this.dir = dir;
@@ -146,22 +145,22 @@ public class Tank extends BaseTank {
         }
         //定义一个方块，并移动
         Color c = g.getColor();
-        g.setColor(Color.white);
-//        g.fillRect(x, y, 50, 50);
-        switch (dir) {
-            case LEFT:
-                g.drawImage(this.group == Group.GOOD ? ResourceMgr.goodTankL : ResourceMgr.badTankL, x, y, null);
-                break;
-            case UP:
-                g.drawImage(this.group == Group.GOOD ? ResourceMgr.goodTankU : ResourceMgr.badTankU, x, y, null);
-                break;
-            case RIGHT:
-                g.drawImage(this.group == Group.GOOD ? ResourceMgr.goodTankR : ResourceMgr.badTankR, x, y, null);
-                break;
-            case DOWN:
-                g.drawImage(this.group == Group.GOOD ? ResourceMgr.goodTankD : ResourceMgr.badTankD, x, y, null);
-                break;
-        }
+        g.setColor(group == Group.GOOD? Color.RED : Color.BLUE);
+        g.fillRect(x, y, 50, 50);
+//        switch (dir) {
+//            case LEFT:
+//                g.drawImage(this.group == Group.GOOD ? ResourceMgr.goodTankL : ResourceMgr.badTankL, x, y, null);
+//                break;
+//            case UP:
+//                g.drawImage(this.group == Group.GOOD ? ResourceMgr.goodTankU : ResourceMgr.badTankU, x, y, null);
+//                break;
+//            case RIGHT:
+//                g.drawImage(this.group == Group.GOOD ? ResourceMgr.goodTankR : ResourceMgr.badTankR, x, y, null);
+//                break;
+//            case DOWN:
+//                g.drawImage(this.group == Group.GOOD ? ResourceMgr.goodTankD : ResourceMgr.badTankD, x, y, null);
+//                break;
+//        }
 
         g.setColor(c);
 
@@ -219,12 +218,20 @@ public class Tank extends BaseTank {
 //        int bX = this.x + Tank.getWIDTH()/2 - Bullet.getWIDTH()/2;
 //        int bY = this.y + Tank.getHEIGHT()/2 - Bullet.getHEIGHT()/2;
 //        tf.bullets.add(new Bullet(bX, bY, dir,tf, this.group));
-        fs.fire(this);
+//        fs.fire(this);
     }
 
     //将开发策略作为成员变量传入方法
     public void fire() {
-        fs.fire(this);
+//        fs.fire(this);
+        int bX = this.getX() + this.getWIDTH()/2 - Bullet.getWIDTH()/2;
+        int bY = this.getY() + this.getHEIGHT()/2 - Bullet.getHEIGHT()/2;
+
+        Dir[] dirs = Dir.values();
+        for (Dir dir : dirs) {
+//            new Bullet(bX, bY, dir,t.getTf(), t.getGroup());
+            this.getTf().gf.createBullet(bX, bY, dir, this.getGroup(), this.getTf());
+        }
     }
 
     public void die() {
