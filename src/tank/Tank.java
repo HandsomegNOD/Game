@@ -195,8 +195,8 @@ public class Tank extends BaseTank {
 
         //随机发射子弹
         if (this.group == Group.BAD && random.nextInt(100) > 95 ) {
-            this.fire(DefaultFire.getInstance());
-//            this.fire();
+//            this.fire(DefaultFire.getInstance());
+            this.fire();
         }
         //敌方坦克随机移动
         if (this.group == Group.BAD && random.nextInt(100) > 95 ) {
