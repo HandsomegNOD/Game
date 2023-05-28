@@ -1,4 +1,4 @@
-package test.design_patten.fatory;
+package test.design_patten.fatorymethod;
 
 /**
  * Author 杨冬冬

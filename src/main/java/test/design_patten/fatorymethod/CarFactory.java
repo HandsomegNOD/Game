@@ -1,4 +1,4 @@
-package test.design_patten.fatory;
+package test.design_patten.fatorymethod;
 
 /**
  * Author 杨冬冬
@@ -7,7 +7,7 @@ package test.design_patten.fatory;
  */
 public class CarFactory {
 
-    public Car create() {
+    public Moveable create() {
         return new Car();
     }
 }

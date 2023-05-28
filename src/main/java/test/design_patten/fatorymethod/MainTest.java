@@ -1,4 +1,4 @@
-package test.design_patten.fatory;
+package test.design_patten.fatorymethod;
 
 import org.junit.Test;
 
@@ -15,8 +15,10 @@ public class MainTest {
 
     @Test
     public void test1() {
-        Moveable m = new Car();
-        m.go();
+//        Moveable m = new Car();
+//        m.go();
+        Moveable c = new CarFactory().create();
+        c.go();
     }
 
 }
