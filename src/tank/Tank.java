@@ -11,10 +11,12 @@ import java.util.Random;
  * 坦克类
  */
 
-public class Tank extends BaseTank {
+public class Tank extends GameObject {
 
     //定义初始位置
     private int x, y;
+    //定义上一次的位置
+    private int preX, preY;
     //宽度和高度
     private static int WIDTH = ResourceMgr.goodTankU.getWidth();
     private static int HEIGHT = ResourceMgr.goodTankU.getHeight();
@@ -144,7 +146,7 @@ public class Tank extends BaseTank {
 
         //判断存活状态
         if (!living) {
-            gm.badTanks.remove(this);
+            gm.remove(this);
         }
         //定义一个方块，并移动
         Color c = g.getColor();
@@ -254,4 +256,6 @@ public class Tank extends BaseTank {
             this.y = TankFrame.GAME_HEIGHT - this.HEIGHT;
         }
     }
+
+    public void stop() {}
 }

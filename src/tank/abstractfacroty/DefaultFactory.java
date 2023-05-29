@@ -10,16 +10,16 @@ import tank.*;
 public class DefaultFactory extends GameFactory{
     @Override
     public BaseTank createTank(int x, int y, Dir dir, Group group, GameModel gm) {
-        return new Tank(x, y, dir, gm, group);
+        return null;
     }
 
     @Override
     public BaseExplode createExplode(int x, int y, GameModel gm) {
-        return new Explode(x, y, gm);
+        return null;
     }
 
     @Override
     public BaseBullet createBullet(int x, int y, Dir dir, Group group, GameModel gm) {
-        return new Bullet(x, y, dir, gm, group);
+        return null;
     }
 }

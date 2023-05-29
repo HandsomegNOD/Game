@@ -9,7 +9,7 @@ import java.awt.*;
  * Date 2023/5/13 11:11
  * Desc  子弹类
  */
-public class Bullet extends BaseBullet {
+public class Bullet extends GameObject {
 
     //速度
     private static final int SPEED = 100;
@@ -43,7 +43,7 @@ public class Bullet extends BaseBullet {
         rec.height = HEIGHT;
 
         //new一个子弹就放到队列中去
-        gm.bullets.add(this);
+        gm.add(this);
     }
 
     public static int getWIDTH() {
@@ -73,7 +73,7 @@ public class Bullet extends BaseBullet {
     @Override
     public void paint(Graphics g) {
         if (!living) {
-            gm.bullets.remove(this);
+            gm.remove(this);
         }
 
         switch (dir) {
@@ -135,7 +135,7 @@ public class Bullet extends BaseBullet {
             this.die();
             int eX = tank.getX() + tank.getWIDTH() / 2 - Explode.getWIDTH() / 2;
             int eY = tank.getY() + tank.getHEIGHT() / 2 - Explode.getHEIGHT() / 2;
-            gm.explodes.add(new Explode(eX, eY, gm));
+            gm.add(new Explode(eX, eY, gm));
 //            gm.explodes.add(gm.gf.createExplode(eX,eY,tf));
         }
     }
