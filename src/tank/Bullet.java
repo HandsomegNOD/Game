@@ -26,15 +26,15 @@ public class Bullet extends BaseBullet {
     //分组
     private Group group = Group.BAD;
 
-    private TankFrame tf;
+    public GameModel gm;
 
     Rectangle rec = new Rectangle();
 
-    public Bullet(int x, int y, Dir dir, TankFrame tf, Group group) {
+    public Bullet(int x, int y, Dir dir, GameModel gm, Group group) {
         this.x = x;
         this.y = y;
         this.dir = dir;
-        this.tf = tf;
+        this.gm = gm;
         this.group = group;
 
         rec.x = this.x;
@@ -43,7 +43,7 @@ public class Bullet extends BaseBullet {
         rec.height = HEIGHT;
 
         //new一个子弹就放到队列中去
-        tf.bullets.add(this);
+        gm.bullets.add(this);
     }
 
     public static int getWIDTH() {
@@ -73,14 +73,9 @@ public class Bullet extends BaseBullet {
     @Override
     public void paint(Graphics g) {
         if (!living) {
-            tf.bullets.remove(this);
+            gm.bullets.remove(this);
         }
 
-        //设置颜色
-//        Color c = g.getColor();
-//        g.setColor(Color.red);
-//        g.fillRect(x, y, WIDTH, HEIGHT);
-//        g.setColor(c);
         switch (dir) {
             case LEFT:
                 g.drawImage(ResourceMgr.bulletL, x, y, null);
@@ -140,8 +135,8 @@ public class Bullet extends BaseBullet {
             this.die();
             int eX = tank.getX() + tank.getWIDTH() / 2 - Explode.getWIDTH() / 2;
             int eY = tank.getY() + tank.getHEIGHT() / 2 - Explode.getHEIGHT() / 2;
-//            tf.explodes.add(new Explode(eX, eY, tf));
-            tf.explodes.add(tf.gf.createExplode(eX,eY,tf));
+            gm.explodes.add(new Explode(eX, eY, gm));
+//            gm.explodes.add(gm.gf.createExplode(eX,eY,tf));
         }
     }
 }

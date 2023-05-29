@@ -31,12 +31,14 @@ public class Tank extends BaseTank {
     //随机移动
     private Random random = new Random();
 
-    private TankFrame tf;
+//    private TankFrame tf;
 
     //定义碰撞检测所需矩形
     Rectangle rec = new Rectangle();
 
     FireStrategy fs ;
+
+    GameModel gm;
 
     public boolean isMove() {
         return moving;
@@ -90,20 +92,20 @@ public class Tank extends BaseTank {
         return rec;
     }
 
-    public TankFrame getTf() {
-        return tf;
+    public GameModel getGm() {
+        return gm;
     }
 
-    public void setTf(TankFrame tf) {
-        this.tf = tf;
+    public void setGm(GameModel gm) {
+        this.gm = gm;
     }
 
     //构造器
-    public Tank(int x, int y, Dir dir, TankFrame tf, Group group) {
+    public Tank(int x, int y, Dir dir, GameModel gm, Group group) {
         this.x = x;
         this.y = y;
         this.dir = dir;
-        this.tf = tf;
+        this.gm = gm;
         this.group = group;
 
         rec.x = this.x;
@@ -142,7 +144,7 @@ public class Tank extends BaseTank {
 
         //判断存活状态
         if (!living) {
-            tf.badTanks.remove(this);
+            gm.badTanks.remove(this);
         }
         //定义一个方块，并移动
         Color c = g.getColor();
