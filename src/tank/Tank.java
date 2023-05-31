@@ -13,8 +13,6 @@ import java.util.Random;
 
 public class Tank extends GameObject {
 
-    //定义初始位置
-    private int x, y;
     //定义上一次的位置
     private int preX, preY;
     //宽度和高度
@@ -33,14 +31,10 @@ public class Tank extends GameObject {
     //随机移动
     private Random random = new Random();
 
-//    private TankFrame tf;
-
     //定义碰撞检测所需矩形
     Rectangle rec = new Rectangle();
 
     FireStrategy fs ;
-
-    GameModel gm;
 
     public boolean isMove() {
         return moving;
@@ -94,20 +88,12 @@ public class Tank extends GameObject {
         return rec;
     }
 
-    public GameModel getGm() {
-        return gm;
-    }
-
-    public void setGm(GameModel gm) {
-        this.gm = gm;
-    }
 
     //构造器
-    public Tank(int x, int y, Dir dir, GameModel gm, Group group) {
+    public Tank(int x, int y, Dir dir, Group group) {
         this.x = x;
         this.y = y;
         this.dir = dir;
-        this.gm = gm;
         this.group = group;
 
         rec.x = this.x;
@@ -138,6 +124,8 @@ public class Tank extends GameObject {
                 e.printStackTrace();
             }
         }
+
+        GameModel.getInstance().add(this);
     }
 
 
@@ -146,7 +134,7 @@ public class Tank extends GameObject {
 
         //判断存活状态
         if (!living) {
-            gm.remove(this);
+            GameModel.getInstance().remove(this);
         }
         //定义一个方块，并移动
         Color c = g.getColor();
@@ -173,10 +161,26 @@ public class Tank extends GameObject {
 
     }
 
+    @Override
+    public int getWidth() {
+        return WIDTH;
+    }
+
+    @Override
+    public int getHeight() {
+        return HEIGHT;
+    }
+
     /**
      * 移动
      */
     public void move() {
+
+        //记录移动前的位置
+        preX = x;
+        preY = y;
+
+        //判断移动状态
         if (!moving) {
             return;
         }
@@ -257,5 +261,8 @@ public class Tank extends GameObject {
         }
     }
 
-    public void stop() {}
+    public void back() {
+        x = preX;
+        y = preY;
+    }
 }

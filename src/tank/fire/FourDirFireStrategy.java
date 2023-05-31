@@ -2,7 +2,10 @@ package tank.fire;
 
 import tank.Bullet;
 import tank.Dir;
+import tank.GameModel;
 import tank.Tank;
+import tank.decorator.RectDecorator;
+import tank.decorator.TailDecorator;
 
 /**
  * Author 杨冬冬
@@ -19,7 +22,11 @@ public class FourDirFireStrategy implements FireStrategy {
 
         Dir[] dirs = Dir.values();
         for (Dir dir : dirs) {
-            new Bullet(bX, bY, dir, t.getGm(), t.getGroup());
+//            GameModel.getInstance().add(
+//                    new RectDecorator(
+//                            new TailDecorator(new Bullet(bX, bY, dir, t.getGroup()))
+//                    ));
+            new Bullet(bX, bY, dir, t.getGroup());
         }
     }
 }

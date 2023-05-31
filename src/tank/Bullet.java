@@ -12,13 +12,11 @@ import java.awt.*;
 public class Bullet extends GameObject {
 
     //速度
-    private static final int SPEED = 100;
+    private static final int SPEED = 10;
     //宽度和高度
     private static int WIDTH = ResourceMgr.bulletU.getWidth();
     private static int HEIGHT = ResourceMgr.bulletU.getHeight();
 
-    //位置
-    private int x, y;
     //方向
     private Dir dir;
     //状态
@@ -26,15 +24,12 @@ public class Bullet extends GameObject {
     //分组
     private Group group = Group.BAD;
 
-    public GameModel gm;
-
     Rectangle rec = new Rectangle();
 
-    public Bullet(int x, int y, Dir dir, GameModel gm, Group group) {
+    public Bullet(int x, int y, Dir dir, Group group) {
         this.x = x;
         this.y = y;
         this.dir = dir;
-        this.gm = gm;
         this.group = group;
 
         rec.x = this.x;
@@ -43,7 +38,7 @@ public class Bullet extends GameObject {
         rec.height = HEIGHT;
 
         //new一个子弹就放到队列中去
-        gm.add(this);
+        GameModel.getInstance().add(this);
     }
 
     public static int getWIDTH() {
@@ -73,7 +68,7 @@ public class Bullet extends GameObject {
     @Override
     public void paint(Graphics g) {
         if (!living) {
-            gm.remove(this);
+            GameModel.getInstance().remove(this);
         }
 
         switch (dir) {
@@ -92,6 +87,16 @@ public class Bullet extends GameObject {
         }
 
         move();
+    }
+
+    @Override
+    public int getWidth() {
+        return WIDTH;
+    }
+
+    @Override
+    public int getHeight() {
+        return HEIGHT;
     }
 
     public void move() {
@@ -121,22 +126,5 @@ public class Bullet extends GameObject {
 
     public void die() {
         living = false;
-    }
-
-    public void collideWith(Tank tank) {
-        if (this.group == tank.getGroup()) {
-            return;
-        }
-        //todo 用一个rect记录子弹的位置
-//        Rectangle bulletRect = new Rectangle(this.x, this.y, WIDTH, HEIGHT);
-//        Rectangle tankRect = new Rectangle(tank.getX(), tank.getY(), Tank.getWIDTH(), Tank.getHEIGHT());
-        if (rec.intersects(tank.getRec())) {
-            tank.die();
-            this.die();
-            int eX = tank.getX() + tank.getWIDTH() / 2 - Explode.getWIDTH() / 2;
-            int eY = tank.getY() + tank.getHEIGHT() / 2 - Explode.getHEIGHT() / 2;
-            gm.add(new Explode(eX, eY, gm));
-//            gm.explodes.add(gm.gf.createExplode(eX,eY,tf));
-        }
     }
 }

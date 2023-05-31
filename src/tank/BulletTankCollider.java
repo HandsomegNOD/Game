@@ -21,7 +21,7 @@ public class BulletTankCollider implements Collider{
                 b.die();
                 int eX = t.getX() + t.getWIDTH() / 2 - Explode.getWIDTH() / 2;
                 int eY = t.getY() + t.getHEIGHT() / 2 - Explode.getHEIGHT() / 2;
-                b.gm.add(new Explode(eX, eY, b.gm));
+                new Explode(eX, eY);
                 return true;
             }
             return false;

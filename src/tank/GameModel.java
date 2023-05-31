@@ -14,7 +14,13 @@ import java.util.List;
  */
 public class GameModel {
 
-    Tank tank = new Tank(200,200,Dir.UP,this,Group.GOOD);
+    private static final GameModel INSTANCE = new GameModel();
+
+    Tank tank;
+
+    static {
+        INSTANCE.init();
+    }
 
     /**
      * 替换了敌方坦克，子弹，爆炸的集合
@@ -23,15 +29,30 @@ public class GameModel {
 
     ColliderChain chain = new ColliderChain();
 
-//    Collider collider = new BulletTankCollider();
+    public static GameModel getInstance() {
+        return INSTANCE;
+    }
 
     public GameModel() {
+
+    }
+
+    //初始化
+    private void init() {
+        tank = new Tank(200,400, Dir.UP, Group.GOOD);
+
         int initTankCount = Integer.parseInt((String) PropertiesMgr.get("initTankCount"));
 
         for (int i = 0; i < initTankCount; i++) {
-            add(new Tank(50 + i * 80, 200, Dir.DOWN, this, Group.BAD));
+            new Tank(50 + i * 80, 200, Dir.DOWN, Group.BAD);
         }
+
+        add(new Wall(150, 150, 200,50));
+        add(new Wall(550, 150, 200,50));
+        add(new Wall(300, 300, 50,200));
+        add(new Wall(550, 3000, 500,200));
     }
+
 
     public void add(GameObject go) {
         this.gos.add(go);
